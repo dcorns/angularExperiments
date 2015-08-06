@@ -4,5 +4,5 @@
  */
 'use strict';
 module.exports = function($scope){
-  $scope.message = 'I am Angular, hear me roar!!';
+  $scope.message = 'I am Angular!!';
 };
