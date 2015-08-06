@@ -26,6 +26,12 @@ gulp.task('browserify', function(){
 
 gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['browserify']);
+  gulp.watch('sass/**/*.sass', ['sass']);
+});
+
+gulp.task('sass', function(){
+  return sass('sass/main.sass')
+    .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('default', ['connect', 'watch']);

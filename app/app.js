@@ -5,7 +5,5 @@
 'use strict';
 var angular = require('angular');
 var controllerMain = require('./controllers/controllerMain');
-console.dir(controllerMain);
 var app = angular.module('app', []);
-
 app.controller('controllerMain', ['$scope', controllerMain]);
