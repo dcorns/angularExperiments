@@ -14,6 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+    /*set this to the name of the test file created by browserify*/
     files: [
       'test/testmain.js'
     ],
