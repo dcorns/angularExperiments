@@ -24,8 +24,21 @@ gulp.task('browserify', function(){
     .pipe(gulp.dest('./public/js/'));
 });
 
+gulp.task('browserifyAngular', function(){
+  return browserify('test/controllerMain_test.js')
+    .bundle()
+    .pipe(source('testmain.js'))
+    .pipe(gulp.dest('test'));
+});
+
 gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['browserify']);
+  gulp.watch('sass/**/*.sass', ['sass']);
+});
+
+gulp.task('sass', function(){
+  return sass('sass/main.sass')
+    .pipe(gulp.dest('./public/css/'));
 });
 
 gulp.task('default', ['connect', 'watch']);
