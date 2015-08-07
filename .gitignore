@@ -1,5 +1,8 @@
 
 .idea/
 node_modules/
-public/
+public/css
+public/js
+test/testmain.js
+
 
