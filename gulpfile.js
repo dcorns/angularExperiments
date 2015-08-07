@@ -48,10 +48,10 @@ gulp.task('angularTest', ['browserifyAngular'], function(){
     .pipe(karma({
       configFile: 'karma.conf.js',
       action: 'run'
-    }))
-    .on('error', function(err){
-      throw err;
-    });
+    }));
+    //.on('error', function(err){
+    //  throw err;
+    //});
 });
 
 gulp.task('default', ['connect', 'watch']);
