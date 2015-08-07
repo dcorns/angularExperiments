@@ -9,6 +9,7 @@ var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var karma = require('gulp-karma');
 
 gulp.task('connect', function(){
   connect.server({
@@ -34,11 +35,23 @@ gulp.task('browserifyAngular', function(){
 gulp.task('watch', function(){
   gulp.watch('app/**/*.js', ['browserify']);
   gulp.watch('sass/**/*.sass', ['sass']);
+  gulp.watch('test/**/*_test.js', ['angularTest']);
 });
 
 gulp.task('sass', function(){
   return sass('sass/main.sass')
     .pipe(gulp.dest('./public/css/'));
+});
+
+gulp.task('angularTest', ['browserifyAngular'], function(){
+    return gulp.src(['test/testmain.js'])
+    .pipe(karma({
+      configFile: 'karma.conf.js',
+      action: 'run'
+    }))
+    .on('error', function(err){
+      throw err;
+    });
 });
 
 gulp.task('default', ['connect', 'watch']);
