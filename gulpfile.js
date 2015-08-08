@@ -26,7 +26,7 @@ gulp.task('browserify', function(){
 });
 
 gulp.task('browserifyAngular', function(){
-  return browserify('test/controllerMain_test.js')
+  return browserify(['test/controllerMain_test.js', 'test/anothercontroller_test.js'])
     .bundle()
     .pipe(source('testmain.js'))
     .pipe(gulp.dest('test'));

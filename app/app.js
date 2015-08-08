@@ -5,5 +5,10 @@
 'use strict';
 var angular = require('angular');
 var controllerMain = require('./controllers/controllerMain');
-var app = angular.module('app', []);
+var app = angular.module('app', [])
+    .controller('anothercontroller', function($scope){
+      $scope.world = 'Dale';
+    });
+
+//another way to add a controller to the app
 app.controller('controllerMain', ['$scope', controllerMain]);

@@ -6,7 +6,12 @@
 'use strict';
 var angular = require('angular');
 var controllerMain = require('./controllers/controllerMain');
-var app = angular.module('app', []);
+var app = angular.module('app', [])
+    .controller('anothercontroller', function($scope){
+      $scope.world = 'Dale';
+    });
+
+//another way to add a controller to the app
 app.controller('controllerMain', ['$scope', controllerMain]);
 },{"./controllers/controllerMain":2,"angular":5}],2:[function(require,module,exports){
 /**
@@ -30826,6 +30831,33 @@ module.exports = angular;
 
 },{"./angular":4}],6:[function(require,module,exports){
 /**
+ * anothercontroller_test
+ * Created by dcorns on 8/7/15.
+ */
+'use strict';
+require('../app/app');
+require('angular-mocks');
+
+describe('anothercontroller', function(){
+  beforeEach(angular.mock.module('app'));
+  var $controller, $scope;
+  beforeEach(inject(function(_$controller_){
+    $controller = _$controller_;
+    $scope = {};
+    $controller('anothercontroller', {$scope: $scope});
+  }));
+  describe('$scope.world', function(){
+    it('should have a value equal to Dale', function(){
+      expect($scope.world).toEqual('Dale');
+    });
+    it('should be able to have its value changed', function(){
+      $scope.world = 'Code Fellows';
+      expect($scope.world).toEqual('Code Fellows');
+    })
+  });
+});
+},{"../app/app":1,"angular-mocks":3}],7:[function(require,module,exports){
+/**
  * controllerMain_test.js
  * Created by dcorns on 8/5/15.
  */
@@ -30853,4 +30885,4 @@ describe('controllerMain', function(){
     })
   });
 });
-},{"../app/app":1,"angular-mocks":3}]},{},[6]);
+},{"../app/app":1,"angular-mocks":3}]},{},[7,6]);
