@@ -7,8 +7,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
+var glob = require('glob');
+var webpack = require('gulp-webpack');
 var karma = require('gulp-karma');
 
 gulp.task('connect', function(){
@@ -18,32 +18,37 @@ gulp.task('connect', function(){
   });
 });
 
-gulp.task('browserify', function(){
-  return browserify('app/app.js')
-    .bundle()
-    .pipe(source('main.js'))
+gulp.task('webpack', function(){
+  return gulp.src(glob.sync('app/**/*.js'))
+    .pipe(webpack({
+      output: {
+        filename: 'main.js'
+      }
+    }))
     .pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('browserifyAngular', function(){
-  return browserify(['test/controllerMain_test.js', 'test/anothercontroller_test.js'])
-    .bundle()
-    .pipe(source('testmain.js'))
+gulp.task('webpackTests', function(){
+  return gulp.src(glob.sync('test/**/*_test.js'))
+    .pipe(webpack({
+      output: {
+        filename: 'testmain.js'
+      }
+    }))
     .pipe(gulp.dest('test'));
 });
 
 gulp.task('watch', function(){
-  gulp.watch('app/**/*.js', ['browserify']);
+  gulp.watch('app/**/*.js', ['webpack']);
   gulp.watch('sass/**/*.sass', ['sass']);
-  gulp.watch('test/**/*_test.js', ['angularTest']);
 });
 
 gulp.task('sass', function(){
-  return sass('sass/main.sass')
+  return sass(glob.sync('sass/**/*.sass'))
     .pipe(gulp.dest('./public/css/'));
 });
 
-gulp.task('angularTest', ['browserifyAngular'], function(){
+gulp.task('angularTest', ['webpackTests'], function(){
     return gulp.src(['test/testmain.js'])
     .pipe(karma({
       configFile: 'karma.conf.js',
@@ -55,3 +60,4 @@ gulp.task('angularTest', ['browserifyAngular'], function(){
 });
 
 gulp.task('default', ['connect', 'watch']);
+gulp.task('unitTests', ['webpackTests', 'angularTest']);
