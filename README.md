@@ -29,3 +29,5 @@ Typical gitignore, license, package.json, and this readme
 `public/index.html` --- configured for use with angular with the application taking up the entire html as opposed to a paticular area on the page. `<html ng-app="app">` Includes tags for the browserified production javascript and the compiled sass. Also contains an example of utilizing controller scope `<div ng-controller="controllerMain"><h3>{{message}}</h3></div>`
 `sass/main.sass` --- trivial sass file for insuring proper compiling and placement of css.
 `test/controllerMain_test.js` --- unit test example for the sample controller
+##changeBundler
+Replace browserify with webpack for compiling the common js files. Webpack come with additional features that will come in handy later.
