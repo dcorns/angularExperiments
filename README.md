@@ -11,6 +11,10 @@ We also wrap all the controller tests inside a `describe` function passing in th
 Using `beforeEach` we mock up our app with the `angular.mock.module` function.
 We declare our controller and scope before using another `beforeEach` to run the `inject` function to add our controller and scope as dependencies for the tests.
 Then we invoke `describe` two more times using the `expect` function to test the initial value of $scope.message and to test that the value of $scope.message can be changed.
+##exp2
+Comment out the error handler in for karma testing in gulpfile.js so that failed test do cause the watch to exit.
+##exp3
+Added `anothercontroller.js` and associated test to demonstrate another way to add a controller to our module. As the number of controllers increase, it would clutter up `app.js` to add controllers this way. That is why it is prefered to keep our controllers in seperate modules as we did with controllerMain.
 ##setup1
 This branch is an experiment of a minimal bootstrap for modular development based on the common js pattern.
 Use npm install of angular.
