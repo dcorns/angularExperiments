@@ -1,6 +1,16 @@
 # angularExperiments
 A repository of angular experiments
 Each experiment is associated with a branch.
+##exp1
+Add some unit testing of the main controller
+Add gulp task to browserify unit controllerMain_test.js.
+Install dev dependency angular-mocks.
+Add unit test in controllerMain_test.js:
+For the unit test we require in our angular module `../app/app` and `angular-mocks`
+We also wrap all the controller tests inside a `describe` function passing in the name of the controller.
+Using `beforeEach` we mock up our app with the `angular.mock.module` function.
+We declare our controller and scope before using another `beforeEach` to run the `inject` function to add our controller and scope as dependencies for the tests.
+Then we invoke `describe` two more times using the `expect` function to test the initial value of $scope.message and to test that the value of $scope.message can be changed.
 ##setup1
 This branch is an experiment of a minimal bootstrap for modular development based on the common js pattern.
 Use npm install of angular.
