@@ -7,7 +7,7 @@ var angular = require('angular');
 var controllerMain = require('./controllers/controllerMain');
 var app = angular.module('app', [])
     .controller('anothercontroller', function($scope){
-      $scope.world = 'Dale';
+      $scope.world = 'Ronald Reagan';
     });
 
 //another way to add a controller to the app

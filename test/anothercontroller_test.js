@@ -16,7 +16,7 @@ describe('anothercontroller', function(){
   }));
   describe('$scope.world', function(){
     it('should have a value equal to Dale', function(){
-      expect($scope.world).toEqual('Dale');
+      expect($scope.world).toEqual('Ronald Reagan');
     });
     it('should be able to have its value changed', function(){
       $scope.world = 'Code Fellows';
